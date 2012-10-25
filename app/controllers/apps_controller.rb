@@ -12,8 +12,12 @@ class AppsController < ApplicationController
 
   def create
     @app = App.new(params[:app])
-    @app.save
-    flash[:notice] = "App has been created."
-    redirect_to @app, :notice => "App has been created."
+    if @app.save
+      flash[:notice] = "App has been created."
+      redirect_to @app
+    else
+      flash[:alert] = "App has not been created."
+      render :action => 'new'
+    end
   end
 end
