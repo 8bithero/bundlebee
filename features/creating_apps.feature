@@ -10,3 +10,5 @@ Feature: Creating apps
   And I fill in "app_bundle_id" with "com.rovio.angry_birds"
   And I press "Create App"
   Then I should see "App has been created."
+  And I should be on the app page for "Angry Birds"
+  And I should see "Angry Birds - Apps - BundleBee"
