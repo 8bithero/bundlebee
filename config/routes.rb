@@ -1,10 +1,17 @@
 Bundlebee::Application.routes.draw do
 
+  namespace :api do
+    namespace :v1 do
+      resources :apps
+    end
+  end
+
   resources :sandboxes
 
   devise_for :users
 
   resources :apps
+  resources :users
   
   root :to => "apps#index"
   # The priority is based upon order of creation:
