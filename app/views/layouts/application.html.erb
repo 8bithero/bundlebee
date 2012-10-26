@@ -47,7 +47,6 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
-              <li><%= link_to "Sign up", new_user_registration_path %></li>
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
               <li class="dropdown">
@@ -63,25 +62,40 @@
                 </ul>
               </li>
             </ul>
-            <form class="navbar-form pull-right">
-              <input class="span2" type="text" placeholder="Email">
-              <input class="span2" type="password" placeholder="Password">
-              <button type="submit" class="btn">Sign in</button>
-            </form>
+              <% if user_signed_in? %>
+                <%= link_to('Sign out', destroy_user_session_path, :method => :delete) %>
+              <% else %>
+                <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "navbar-form pull-right"}) do |f| %>
+                  <%= f.email_field :email, placeholder: "Email", class:"span2" %>
+                  <%= f.password_field :password, placeholder: "Password", class:"span2" %>
+                  <%= f.submit "Sign in", class: "btn" %>
+
+                <% end %>
+              <% end %>
+            
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
     <div class="container">
+      <p>
+        <% if user_signed_in? %>
+            Signed in as <%= current_user.email %>
+          <% else %>
+            <%= link_to "Sign up", new_user_registration_path %>
+        <% end %>
+      </p>
+      
+      <p>
+        <% flash.each do |key, value| %>
+          <div class='flash' id='<%= key %>'>
+            <%= value %>
+          </div>
+        <% end %>
+      </p>
 
-      <% flash.each do |key, value| %>
-        <div class='flash' id='<%= key %>'>
-          <%= value %>
-        </div>
-      <% end %>
-
-      <%= yield %>
+      <p><%= yield %></p>
 
       <hr>
 

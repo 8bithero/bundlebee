@@ -1,5 +1,7 @@
 Bundlebee::Application.routes.draw do
 
+  resources :sandboxes
+
   devise_for :users
 
   resources :apps
