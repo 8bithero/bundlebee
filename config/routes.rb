@@ -1,5 +1,7 @@
 Bundlebee::Application.routes.draw do
 
+  devise_for :users
+
   resources :apps
   
   root :to => "apps#index"
