@@ -6,12 +6,14 @@ Bundlebee::Application.routes.draw do
     end
   end
 
-  resources :sandboxes
+  resources :sandboxes, only: [:create, :destroy]
 
   devise_for :users
 
   resources :apps
-  resources :users
+  resources :users do
+    resources :sandboxes, only: [:create, :destroy]
+  end
   
   root :to => "apps#index"
   # The priority is based upon order of creation:

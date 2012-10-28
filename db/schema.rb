@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(:version => 20121026101028) do
   end
 
   create_table "sandboxes", :force => true do |t|
-    t.integer  "user_id_id"
-    t.integer  "app_id_id"
+    t.integer  "user_id"
+    t.integer  "app_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

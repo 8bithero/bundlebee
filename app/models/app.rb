@@ -3,4 +3,7 @@ class App < ActiveRecord::Base
 
   validates :name,        presence: true
   validates :bundle_id,   presence: true, uniqueness: true
+
+  has_many :sandboxes
+  has_many :users, through: :sandboxes
 end
