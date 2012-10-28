@@ -2,11 +2,18 @@ class SandboxesController < ApplicationController
   # GET /sandboxes
   # GET /sandboxes.json
   def index
-    @sandboxes = Sandbox.all
+    unless defined? current_user
+      @sandbox = current_user.sandboxes.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @sandboxes }
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @sandbox }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to :root, alert: 'Get the hell outta here!' }
+        format.json { render json: { :error => "Get the hell outta here!" } }
+      end
     end
   end
 

@@ -3,10 +3,13 @@ Bundlebee::Application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :apps
+      resources :users, only: :show
+      resources :sandboxes, only: [:create, :destroy]
     end
   end
 
   resources :sandboxes, only: [:create, :destroy]
+  match 'sandbox' => 'sandboxes#index', :via => :get
 
   devise_for :users
 
@@ -16,6 +19,7 @@ Bundlebee::Application.routes.draw do
   end
   
   root :to => "apps#index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

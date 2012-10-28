@@ -1,25 +1,22 @@
-<h1>Listing sandboxes</h1>
 
-<table>
-  <tr>
-    <th>User</th>
-    <th>App</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <h1>Listing sandboxes</h1>
 
-<% @sandboxes.each do |sandbox| %>
-  <tr>
-    <td><%= sandbox.user_id %></td>
-    <td><%= sandbox.app_id %></td>
-    <td><%= link_to 'Show', sandbox %></td>
-    <td><%= link_to 'Edit', edit_sandbox_path(sandbox) %></td>
-    <td><%= link_to 'Destroy', sandbox, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+  <table>
+    <tr>
+      <th>User</th>
+      <th>App</th>
+      <th></th>
+      <th></th>
+    </tr>
 
-<br />
+  <% @sandbox.each do |sandbox| %>
+    <tr>
+      <td><%= sandbox.user_id %></td>
+      <td><%= sandbox.app_id %></td>
+      <td><%= link_to 'Show', sandbox %></td>
+      <td><%= link_to 'Destroy', sandbox, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </table>
 
-<%= link_to 'New Sandbox', new_sandbox_path %>
+  <br />
