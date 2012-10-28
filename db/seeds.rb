@@ -11,7 +11,7 @@ andreas = User.create! :email => 'andreas@example.com', :password => 'broomstick
 puts 'New user created: ' << andreas.email
 paris   = User.create! :email => 'paris@example.com',   :password => 'broomstick', :password_confirmation => 'broomstick'
 puts 'New user created: ' << paris.email
-andreas = User.create! :email => 'vasilis@example.com', :password => 'broomstick', :password_confirmation => 'broomstick'
+vasilis = User.create! :email => 'vasilis@example.com', :password => 'broomstick', :password_confirmation => 'broomstick'
 puts 'New user created: ' << vasilis.email
 
 
