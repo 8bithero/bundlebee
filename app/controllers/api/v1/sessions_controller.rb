@@ -10,10 +10,10 @@ class Api::V1::SessionsController < Api::V1::BaseController
   def create
 
     #build_resource
-    resource = User.find_for_database_authentication(:email=>params[:user_login][:email])
+    resource = User.find_for_database_authentication(:email=>params[:email])
     return invalid_login_attempt unless resource
 
-    if resource.valid_password?(params[:user_login][:password])
+    if resource.valid_password?(params[:password])
       sign_in(:user, resource)
       resource.ensure_authentication_token!
       render :json => { :success => true, :auth_token => resource.authentication_token, :email => resource.email }
@@ -23,7 +23,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
   end
   
   def destroy
-    resource = User.find_for_database_authentication(:email => params[:user_login][:email])
+    resource = User.find_for_database_authentication(:email => params[:email])
     resource.authentication_token = nil
     resource.save
     render :json => {:success => true }
@@ -33,7 +33,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
   def ensure_params_exist
   #raise params.inspect
 
-    return unless params[:user_login].blank?
+    return unless params[:email].blank?
     render :json => { :success => false, :message => "lala missing user_login parameter #{params.inspect}" }, :status => 422
   end
 
