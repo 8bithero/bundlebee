@@ -1,6 +1,7 @@
 class Api::V1::SandboxesController < Api::V1::BaseController
-  before_filter :find_project, :only => [:show, :update, :destroy]
-
+  #before_filter :find_project, :only => [:show, :update, :destroy]
+  before_filter :authenticate_user!
+  
   def index
     projects = Project.for(current_user)
     respond_with(projects, :except => :name, :methods => :title)

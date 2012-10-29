@@ -1,6 +1,6 @@
 class Api::V1::UsersController < Api::V1::BaseController
   #before_filter :find_project, :only => [:show, :update, :destroy]
-
+  before_filter :authenticate_user!
 
   def show
     if current_user.id == params[:id].to_i
