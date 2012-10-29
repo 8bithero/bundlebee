@@ -1,6 +1,6 @@
 class Api::V1::BaseController < ActionController::Base
   respond_to :json
-  before_filter :authenticate_user
+  #before_filter :authenticate_user
 
   private
     def authenticate_user

@@ -1,17 +1,21 @@
 Bundlebee::Application.routes.draw do
 
+  #devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
+  
   namespace :api do
     namespace :v1 do
-      resources :apps
-      resources :users, only: :show
-      resources :sandboxes, only: [:create, :destroy]
+      devise_for :users
+      resources  :apps
+      resources  :users, only: :show
+      resources  :sandboxes, only: [:create, :destroy]
     end
   end
 
   resources :sandboxes, only: [:create, :destroy]
   match 'sandbox' => 'sandboxes#index', :via => :get
 
-  devise_for :users
+  #devise_for :users
+
 
   resources :apps
   resources :users do
