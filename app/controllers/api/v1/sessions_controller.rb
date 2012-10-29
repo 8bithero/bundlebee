@@ -34,7 +34,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
   #raise params.inspect
 
     return unless params[:email].blank?
-    render :json => { :success => false, :message => "missing user_login parameter" }, :status => 422
+    render :json => { :success => false, :message => "lala missing user_login parameter #{params.inspect}" }, :status => 422
   end
 
   def invalid_login_attempt

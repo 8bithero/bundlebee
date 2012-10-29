@@ -14,7 +14,7 @@ Bundlebee::Application.routes.draw do
   resources :sandboxes, only: [:create, :destroy]
   match 'sandbox' => 'sandboxes#index', :via => :get
 
-  #devise_for :users
+  devise_for :users
 
 
   resources :apps
