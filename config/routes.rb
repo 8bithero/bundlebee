@@ -7,19 +7,19 @@ Bundlebee::Application.routes.draw do
       devise_for :users
       resources  :apps
       resources  :users, only: :show
-      resources  :sandboxes, only: [:create, :destroy]
+      resources  :apps_users, only: [:create, :destroy]
     end
   end
 
-  resources :sandboxes, only: [:create, :destroy]
-  match 'sandbox' => 'sandboxes#index', :via => :get
+  resources :apps_users, only: [:create, :destroy]
+  match 'sandbox' => 'apps_users#index', :via => :get
 
   devise_for :users
 
 
   resources :apps
   resources :users do
-    resources :sandboxes, only: [:create, :destroy]
+    resources :apps_users, only: [:create, :destroy]
   end
   
   root :to => "apps#index"

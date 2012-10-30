@@ -1,4 +1,4 @@
-<%= form_for(current_user.sandboxes.build(app_id: app.id)) do |f| %>
+<%= form_for(current_user.apps_users.build(app_id: app.id)) do |f| %>
   <%= f.hidden_field :app_id %>
   <%= f.submit "Add to sandbox", class: "btn btn-small btn-success" %>
 <% end %>

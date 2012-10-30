@@ -12,18 +12,18 @@ class User < ActiveRecord::Base
 
   before_save :ensure_authentication_token
 
-  has_many :sandboxes
-  has_many :apps, through: :sandboxes
+  has_many :apps_users
+  has_many :apps, through: :apps_users
 
   def has_app?(the_app)
-    sandboxes.find_by_app_id(the_app.id)
+    apps_users.find_by_app_id(the_app.id)
   end
 
   def add_app!(the_app)
-    sandboxes.create!(app_id: the_app.id)
+    apps_users.create!(app_id: the_app.id)
   end
 
   def remove_app!(the_app)
-    sandboxes.find_by_app_id(the_app.id).destroy
+    apps_users.find_by_app_id(the_app.id).destroy
   end
 end
