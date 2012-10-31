@@ -1,0 +1,22 @@
+
+  <h1>Listing sandboxes</h1>
+
+  <table>
+    <tr>
+      <th>User</th>
+      <th>App</th>
+      <th></th>
+      <th></th>
+    </tr>
+
+  <% @sandbox.each do |sandbox| %>
+    <tr>
+      <td><%= sandbox.user_id %></td>
+      <td><%= sandbox.app_id %></td>
+      <td><%= link_to 'Show', sandbox %></td>
+      <td><%= link_to 'Destroy', sandbox, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </table>
+
+  <br />

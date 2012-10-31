@@ -8,7 +8,6 @@ class Api::V1::SessionsController < Api::V1::BaseController
   respond_to :json
   
   def create
-
     #build_resource
     resource = User.find_for_database_authentication(:email=>params[:email])
     return invalid_login_attempt unless resource

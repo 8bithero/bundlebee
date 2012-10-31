@@ -4,6 +4,6 @@ class App < ActiveRecord::Base
   validates :name,        presence: true
   validates :bundle_id,   presence: true, uniqueness: true
 
-  has_many :apps_users
-  has_many :users, through: :apps_users
+  has_many :sandbox_items
+  #has_many :users, through: :apps_users
 end
