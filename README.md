@@ -34,6 +34,7 @@ No authentication token is required. This list can be viewed by anyone, includin
 
 **Example return data**
 A successful response will return an array of hashes containing the individual App's parameters.
+    
     [
         {
             "bundle_id": "com.rovio.angry_birds",
@@ -63,6 +64,7 @@ All sandbox methods are user specific and so all methods require an authenticati
 
 **Example return data**
 A successful response will return an array of hashes containing the individual App's parameters.
+    
     [
         {
             "app_id": 1,
