@@ -12,22 +12,23 @@ class Api::V1::SandboxItemsController < Api::V1::BaseController
     sandbox_item = current_user.add_app!(app)
     #sandbox_item = SandboxItem.create(params[:app_id])
     if sandbox_item.valid?
-      respond_with(sandbox_item)#, :location => api_v1_sandbox_path(sandbox_item))
+      respond_with({:success => true, :message => "#{app.name} was successfully added to your Sandbox."}, :status => 201, :location => "nil")
     else
-      respond_with(sandbox_item)
+      respond_with({:success => false, :message => "#{app.name} was successfully added to your Sandbox."}, :status => 200, :location => "nil")
     end
   end
 
 
   def destroy
-    @project.destroy
-    respond_with(@project)
+    app = App.find(params[:app_id])
+    sandbox_item = current_user.remove_app!(app)
+    respond_with({:success => true, :message => "App was successfully removed from your Sandbox."}, :status => 200, :location => "nil")
   end
 
   private
 
-  def find_project
-    @project = Project.for(current_user).find(params[:id])
+  def find_app
+    @app = App.for(current_user).find(params[:id])
     rescue ActiveRecord::RecordNotFound
       error = { :error => "The project you were looking for " +
                           "could not be found."}

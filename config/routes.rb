@@ -7,8 +7,10 @@ Bundlebee::Application.routes.draw do
       devise_for :users
       resources  :apps
       resources  :users, only: :show
-      resources  :sandbox_items, only: [:create, :destroy]
-      match 'sandbox' => 'sandbox_items#index', :via => :get
+      #resources  :sandbox_items, only: [:create, :destroy]
+      match 'sandbox' => 'sandbox_items#index',   :via => :get
+      match 'sandbox' => 'sandbox_items#create',  :via => :post
+      match 'sandbox' => 'sandbox_items#destroy', :via => :delete
     end
   end
 

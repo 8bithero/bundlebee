@@ -1,19 +1,20 @@
-codename: bundlebee
+Codename: BundleBee
 =========
 
-BundleBee is build with a REST architecture, where resources follow the CRUD (Create Read Update Delete) paradim.
-This means almost all resources have the following actions/methods available:
-* **Index**: Shows all instances of a resource (url: /apps ) -> via: GET
-* **Show**: Shows a single instance of a resource (url: /apps/:id ) -> via: GET
-* **New/Create**: Creates a new instance of a resource (url: /apps/new ) -> via: POST
-* **Update**: Edits a single instance of a resource (url: /apps/:id/edit ) -> via: UPDATE
-* **Destroy**: Shows all instances of a resource (url: /apps ) -> via: DELETE
+    **Please ignore the content of this block. It is currently not accurate.** 
+    BundleBee is build with a REST architecture, where resources follow the CRUD (Create Read Update Delete) paradim.
+    This means almost all resources have the following actions/methods available:
+    * **Index**: Shows all instances of a resource (url: /apps ) -> via: GET
+    * **Show**: Shows a single instance of a resource (url: /apps/:id ) -> via: GET
+    * **New/Create**: Creates a new instance of a resource (url: /apps/new ) -> via: POST
+    * **Update**: Edits a single instance of a resource (url: /apps/:id/edit ) -> via: UPDATE
+    * **Destroy**: Shows all instances of a resource (url: /apps ) -> via: DELETE
 
 ## Getting The Authentication token
 In order for users to begin verifying themselves with an authentication token they will first need to provide their login credentials (email & password).
 
-Login credentials will need to be sent as parameters to the backend server via a POST request to:
-http://www.my-url-here.com/api/v1/users/sign_in
+Login credentials will need to be sent as parameters to the backend server via:
+**POST** http://www.my-url-here.com/api/v1/users/sign_in
 
 It is also required to add **Content-Type** as **x-www-form-urlencoded** to the header.
 
@@ -55,7 +56,7 @@ A successful response will return an array of hashes containing the individual A
     ]
 
 
-## User Sandbox
+## User's Sandbox
 The user's sandbox is the collection of Apps that the user has added to his account.
 All sandbox methods are user specific and so all methods require an authentication token to be sent as a parameter.
 
@@ -81,3 +82,23 @@ A successful response will return an array of hashes containing the individual A
             "user_id": 1
         }
     ]
+
+
+### Add App to a user's sandbox 
+**POST** http://www.my-url-here.com/api/v1/sandbox?token=NQVmFHpsizHSnXDASeys&app_id=1
+
+**Example return data**
+A successful response will return a 201 status code a hash with the following:
+    
+    {
+      "success": true,
+      "message": "App-name-goes-here was successfully added to your Sandbox."
+    }
+
+
+### Remove App from a user's sandbox 
+**DELETE** http://www.my-url-here.com/api/v1/sandbox?token=NQVmFHpsizHSnXDASeys&app_id=1
+
+**Example return data**
+Although the item is successfully deleted, currently you will receive a 204 - No content status code returned.
+A correct response reply will be implemented in the next commit.
