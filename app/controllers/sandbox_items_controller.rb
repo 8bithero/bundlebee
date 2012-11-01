@@ -3,11 +3,11 @@ class SandboxItemsController < ApplicationController
   # GET /sandboxes.json
   def index
     unless defined? current_user
-      @sandbox = current_user.sandboxes.all
+      @sandbox_items = current_user.sandbox_items.all
 
       respond_to do |format|
         format.html # index.html.erb
-        format.json { render json: @sandbox }
+        format.json { render json: @sandbox_items }
       end
     else
       respond_to do |format|

@@ -1,8 +1,8 @@
 class Api::V1::SessionsController < Api::V1::BaseController
 
   #include Devise::Controllers::InternalHelpers
-  
-  before_filter :authenticate_user!, :except => [:create, :destroy]
+  #before_filter :authenticate_user!, :except => [:create, :destroy]
+  skip_before_filter :authenticate_user, :only => [:create, :destroy]
   before_filter :ensure_params_exist
 
   respond_to :json

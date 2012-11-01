@@ -8,11 +8,12 @@ Bundlebee::Application.routes.draw do
       resources  :apps
       resources  :users, only: :show
       resources  :sandbox_items, only: [:create, :destroy]
+      match 'sandbox' => 'sandbox_items#index', :via => :get
     end
   end
 
   resources :sandbox_items, only: [:create, :destroy]
-  match 'sandbox' => 'sandbox_items#index', :via => :get
+  #match 'sandbox' => 'sandbox_items#index', :via => :get
 
   devise_for :users
 

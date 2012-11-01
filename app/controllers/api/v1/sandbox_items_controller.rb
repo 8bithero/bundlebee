@@ -3,14 +3,16 @@ class Api::V1::SandboxItemsController < Api::V1::BaseController
   #before_filter :authenticate_user!
 
   def index
-    sandbox = current_user.sandbox_item.all
+    sandbox = current_user.sandbox_items.all
     respond_with(sandbox)
   end
 
   def create
-    sandbox_item = SandboxItem.create(params[:app])
+    app = App.find(params[:app_id])
+    sandbox_item = current_user.add_app!(app)
+    #sandbox_item = SandboxItem.create(params[:app_id])
     if sandbox_item.valid?
-      respond_with(sandbox_item, :location => api_v1_sandbox_path(sandbox_item))
+      respond_with(sandbox_item)#, :location => api_v1_sandbox_path(sandbox_item))
     else
       respond_with(sandbox_item)
     end

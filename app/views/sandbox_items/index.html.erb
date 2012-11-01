@@ -9,12 +9,12 @@
       <th></th>
     </tr>
 
-  <% @sandbox.each do |sandbox| %>
+  <% @sandbox_items.each do |item| %>
     <tr>
-      <td><%= sandbox.user_id %></td>
-      <td><%= sandbox.app_id %></td>
-      <td><%= link_to 'Show', sandbox %></td>
-      <td><%= link_to 'Destroy', sandbox, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= item.user_id %></td>
+      <td><%= item.app_id %></td>
+      <td><%= link_to 'Show', item %></td>
+      <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
   </table>

@@ -1,5 +1,5 @@
 class Api::V1::RegistrationsController < Api::V1::BaseController
-  
+  #skip_before_filter :authenticate_user
   respond_to :json
 
   def create

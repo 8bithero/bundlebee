@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121026101028) do
+ActiveRecord::Schema.define(:version => 20121030215042) do
 
   create_table "apps", :force => true do |t|
     t.string   "name"
@@ -21,9 +21,9 @@ ActiveRecord::Schema.define(:version => 20121026101028) do
     t.datetime "updated_at",   :null => false
   end
 
-  create_table "sandboxes", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "app_id"
+  create_table "sandbox_items", :force => true do |t|
+    t.integer  "user_id_id"
+    t.integer  "app_id_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

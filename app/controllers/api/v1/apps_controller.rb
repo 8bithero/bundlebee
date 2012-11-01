@@ -1,6 +1,6 @@
 class Api::V1::AppsController < Api::V1::BaseController
 
-  #before_filter :authenticate_user!
+  skip_before_filter :authenticate_user, :only => [:index]
 
   def index
     respond_with(App.all)
