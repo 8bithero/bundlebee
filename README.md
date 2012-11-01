@@ -34,24 +34,24 @@ No authentication token is required. This list can be viewed by anyone, includin
 
 **Example return data**
 A successful response will return an array of hashes containing the individual App's parameters.
-    
+
     [
-        {
-            "bundle_id": "com.rovio.angry_birds",
-            "created_at": "2012-10-26T09:10:19Z",
-            "developer_id": null,
-            "id": 1,
-            "name": "Angry Birds",
-            "updated_at": "2012-10-26T09:10:19Z"
-        },
-        {
-            "bundle_id": "com.mobelux.instapaper",
-            "created_at": "2012-10-26T09:14:50Z",
-            "developer_id": null,
-            "id": 2,
-            "name": "Instapaper",
-            "updated_at": "2012-10-26T09:14:50Z"
-        }
+      {
+        "bundle_id": "com.rovio.angry_birds",
+        "created_at": "2012-10-26T09:10:19Z",
+        "developer_id": null,
+        "id": 1,
+        "name": "Angry Birds",
+        "updated_at": "2012-10-26T09:10:19Z"
+      },
+      {
+        "bundle_id": "com.mobelux.instapaper",
+        "created_at": "2012-10-26T09:14:50Z",
+        "developer_id": null,
+        "id": 2,
+        "name": "Instapaper",
+        "updated_at": "2012-10-26T09:14:50Z"
+      }
     ]
 
 
