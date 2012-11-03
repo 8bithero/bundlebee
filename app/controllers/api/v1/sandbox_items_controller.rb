@@ -19,15 +19,32 @@ class Api::V1::SandboxItemsController < Api::V1::BaseController
     end
   end
 
+  # API call as /has_app/:app_id
+  # will check if app exists
+  #---------------------------------------------------------------
+  def show
+    app = current_user.apps.find(params[:app_id])
+    respond_with(app)
+      rescue ActiveRecord::RecordNotFound
+        error = { :success => false, :message => "The App you were looking for could not be found."}
+        respond_with(error, :status => 404)
+  end
+
 
   def create
     app = App.find(params[:app_id])
     sandbox_item = current_user.add_app!(app)
-    #sandbox_item = SandboxItem.create(params[:app_id])
+    
     if sandbox_item.valid?
-      respond_with({:success => true, :message => "#{app.name} was successfully added to your Sandbox."}, :status => 201, :location => "nil")
+      respond_with({:success => true, 
+                    :message => "#{app.name} was successfully added to your Sandbox."}, 
+                    :status => 201, 
+                    :location => "nil")
     else
-      respond_with({:success => false, :message => "#{app.name} was successfully added to your Sandbox."}, :status => 200, :location => "nil")
+      respond_with({:success => false, 
+                    :message => "#{app.name} could not be added to your Sandbox."}, 
+                    :status => 200, 
+                    :location => "nil")
     end
   end
 
@@ -40,11 +57,12 @@ class Api::V1::SandboxItemsController < Api::V1::BaseController
 
   private
 
-  def find_app
-    @app = App.for(current_user).find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      error = { :error => "The project you were looking for " +
-                          "could not be found."}
-      respond_with(error, :status => 404)
-  end
+    def find_app
+      #@app = App.for(current_user).find(params[:id])
+      @app = current_user.apps.find(params[:app_id])
+      rescue ActiveRecord::RecordNotFound
+        error = { :error => "The project you were looking for " +
+                            "could not be found."}
+        respond_with(error, :status => 404)
+    end
 end

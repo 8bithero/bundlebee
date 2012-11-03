@@ -22,11 +22,15 @@ ActiveRecord::Schema.define(:version => 20121030215042) do
   end
 
   create_table "sandbox_items", :force => true do |t|
-    t.integer  "user_id_id"
-    t.integer  "app_id_id"
+    t.integer  "user_id"
+    t.integer  "app_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "sandbox_items", ["app_id"], :name => "index_sandbox_items_on_app_id"
+  add_index "sandbox_items", ["user_id", "app_id"], :name => "index_sandbox_items_on_user_id_and_app_id", :unique => true
+  add_index "sandbox_items", ["user_id"], :name => "index_sandbox_items_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
