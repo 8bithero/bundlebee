@@ -19,8 +19,8 @@ class Api::V1::SandboxItemsController < Api::V1::BaseController
     end
   end
 
-  # GET /api/v1/has_app/:app_id
-  #  - will check if app exists
+
+  # GET /api/v1/has_app/:app_id | will check if app exists
   #---------------------------------------------------------------
   def show
     app = current_user.apps.find(params[:app_id])
@@ -30,6 +30,7 @@ class Api::V1::SandboxItemsController < Api::V1::BaseController
     error = { :success => false, :message => "The App you were looking for could not be found in your Sandbox."}
     respond_with(error, :status => 404)
   end
+
 
   # POST /api/v1/add_to_sandbox/:app_id
   #---------------------------------------------------------------
@@ -49,6 +50,7 @@ class Api::V1::SandboxItemsController < Api::V1::BaseController
                     :location => "nil")
     end
   end
+
 
   # DELETE /api/v1/remove_from_sandbox/:app_id
   #---------------------------------------------------------------

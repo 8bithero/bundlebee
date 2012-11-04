@@ -15,7 +15,7 @@ In order for users to begin verifying themselves with an authentication token th
 
 Login credentials will need to be sent as parameters to the backend server via:
 
-**POST** /api/v1/users/sign_in
+**POST** /api/v1/login
 
 *Note: You may pass 'email' and 'password' as either request parameters or as URL parameters.*
 
@@ -130,6 +130,27 @@ A **successful** delete will return a **200** status code and a hash with the fo
     }
 
 
+### Check app exists in Sandbox 
+**GET** /api/v1/has_app/:app_id?token=token-value-goes-here
+
+**Example return data**
+
+
+**App exist in sandbox** - response **200** status code and a hash with a:
+    {
+      "app_id": 2,
+      "created_at": "2012-11-01T11:13:49Z",
+      "id": 2,
+      "updated_at": "2012-11-01T11:13:49Z",
+      "user_id": 1
+    }
+
+
+**App DOES NOT exist in sandbox** - response **404** status code and a hash with the following:
+    {
+      "success": false,
+      "message": "The App you were looking for could not be found in your Sandbox"
+    }
 
 
 
