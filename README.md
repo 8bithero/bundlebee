@@ -15,7 +15,9 @@ In order for users to begin verifying themselves with an authentication token th
 
 Login credentials will need to be sent as parameters to the backend server via:
 
-**POST** http://www.my-url-here.com/api/v1/users/sign_in
+**POST** /api/v1/users/sign_in
+
+*Note: You may pass 'email' and 'password' as either request parameters or as URL parameters.*
 
 It is also required to add **Content-Type** as **x-www-form-urlencoded** to the header.
 
@@ -71,6 +73,8 @@ All sandbox methods are user specific and so all methods require an authenticati
 ### Get a list of all Apps added to a user's sandbox 
 **GET** /api/v1/sandbox?token=token-value-goes-here
 
+*Note: May need to append .json to request (i.e. /api/v1/sandbox.json?token=token-value-goes-here)*
+
 **Example return data**
 
 A **successful** response will return an array of hashes containing the individual App's parameters.
@@ -98,7 +102,7 @@ A **successful** response will return an array of hashes containing the individu
 ### Add App to Sandbox 
 **POST** /api/v1/add_to_sandbox/:app_id
 
-*Note: You must pass 'token' as either a request parameter or as a URL parameter.*
+*Note: You may pass 'token' as either a request parameter or as a URL parameter.*
 
 **Example return data**
 
@@ -114,7 +118,7 @@ A **successful** response will return a **201** status code and a hash with the 
 ### Remove App from Sandbox 
 **DELETE** /api/v1/remove_from_sandbox/:app_id
 
-*Note: You must pass 'token' as either a request parameter or as a URL parameter.*
+*Note: You may pass 'token' as either a request parameter or as a URL parameter.*
 
 **Example return data**
 
