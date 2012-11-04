@@ -14,6 +14,7 @@ Codename: BundleBee
 In order for users to begin verifying themselves with an authentication token they will first need to provide their login credentials (email & password).
 
 Login credentials will need to be sent as parameters to the backend server via:
+
 **POST** http://www.my-url-here.com/api/v1/users/sign_in
 
 It is also required to add **Content-Type** as **x-www-form-urlencoded** to the header.
@@ -27,14 +28,19 @@ Upon successful authentication a JSON responce - similar to the example below - 
     }
 
 
+
+
 ## Retreiving a list of all Apps
 **GET** /api/v1/apps
+
 *Note: May need to append .json to request (i.e. /api/v1/apps.json)*
+
 This will give you a complete list off all Apps available on the system.
 No authentication token is required. This list can be viewed by anyone, including non-logged in users.
 
 **Example return data**
-A successful response will return an array of hashes containing the individual App's parameters.
+
+A **successful** response will return an array of hashes containing the individual App's parameters.
 
     [
       {
@@ -56,12 +62,14 @@ A successful response will return an array of hashes containing the individual A
     ]
 
 
+
+
 ## User's Sandbox
 The user's sandbox is the collection of Apps that the user has added to his account.
 All sandbox methods are user specific and so all methods require an authentication token to be sent as a parameter.
 
 ### Get a list of all Apps added to a user's sandbox 
-**GET** http://www.my-url-here.com/api/v1/sandbox?token=NQVmFHpsizHSnXDASeys
+**GET** /api/v1/sandbox?token=token-value-goes-here
 
 **Example return data**
 A successful response will return an array of hashes containing the individual App's parameters.
@@ -84,19 +92,29 @@ A successful response will return an array of hashes containing the individual A
     ]
 
 
+
+
 ### Add App to a user's sandbox 
 **POST** /api/v1/add_to_sandbox/:app_id
 
-*Note: must pass 'token' as either request param or URL param.*
+*Note: You must pass 'token' as either a request parameter or as a URL parameter.*
 
 **Example return data**
-A successful response will return a 201 status code a hash with the following:
+
+A **successful* response will return a **201** status code and a hash with the following:
     
     {
       "success": true,
       "message": "App-name-goes-here was successfully added to your Sandbox."
     }
 
+
+An **unsuccessful* response will return one of the following responces:
+    
+    {
+      "success": true,
+      "message": "App-name-goes-here was successfully added to your Sandbox."
+    }
 
 ### Remove App from a user's sandbox 
 **DELETE** /api/v1/remove_from_sandbox/:app_id
