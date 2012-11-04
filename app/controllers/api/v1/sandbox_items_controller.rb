@@ -3,20 +3,21 @@ class Api::V1::SandboxItemsController < Api::V1::BaseController
   #before_filter :authenticate_user!
 
   def index
-    if params[:app_id] and params[:app_id].present?
-      app = App.find(params[:app_id])
-      
-      if current_user.has_app?(app)
-        respond_with({:success => true, :message => "Application has been found in your sandbox."}, :status => 200, :location => "nil")
-      else
-        respond_with({:success => false, :message => "You have not added this application to your sandbox."}, :status => 200, :location => "nil")
-      end
-    elsif params[:app_id] and params[:app_id].blank?
-      respond_with({:success => false, :message => "Please provide an application ID number."}, :status => 200, :location => "nil")
-    else
-      sandbox = current_user.sandbox_items.all
-      respond_with(sandbox)
-    end
+    #if params[:app_id] and params[:app_id].present?
+    #  app = App.find(params[:app_id])
+    #  
+    #  if current_user.has_app?(app)
+    #    respond_with({:success => true, :message => "Application has been found in your sandbox."}, :status => 200, :location => "nil")
+    #  else
+    #    respond_with({:success => false, :message => "You have not added this application to your sandbox."}, :status => 200, :location => "nil")
+    #  end
+    #elsif params[:app_id] and params[:app_id].blank?
+    #  respond_with({:success => false, :message => "Please provide an application ID number."}, :status => 200, :location => "nil")
+    #else
+    #  sandbox = current_user.sandbox_items.all
+    #  respond_with(sandbox)
+    #end
+    respond_with(current_user.apps)
   end
 
 

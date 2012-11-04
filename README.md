@@ -138,11 +138,12 @@ A **successful** delete will return a **200** status code and a hash with the fo
 
 **App exist in sandbox** - response **200** status code and a hash with a:
     {
-      "app_id": 2,
-      "created_at": "2012-11-01T11:13:49Z",
-      "id": 2,
-      "updated_at": "2012-11-01T11:13:49Z",
-      "user_id": 1
+      "bundle_id": "com.rovio.angry_birds",
+      "created_at": "2012-11-03T21:21:20Z",
+      "developer_id": null,
+      "id": 1,
+      "name": "Angry Birds",
+      "updated_at": "2012-11-03T21:21:20Z"
     }
 
 
