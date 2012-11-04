@@ -28,8 +28,8 @@ Upon successful authentication a JSON responce - similar to the example below - 
 
 
 ## Retreiving a list of all Apps
-**GET** http://www.my-url-here.com/api/v1/apps
-
+**GET** /api/v1/apps
+*Note: May need to append .json to request (i.e. /api/v1/apps.json)*
 This will give you a complete list off all Apps available on the system.
 No authentication token is required. This list can be viewed by anyone, including non-logged in users.
 
@@ -85,7 +85,9 @@ A successful response will return an array of hashes containing the individual A
 
 
 ### Add App to a user's sandbox 
-**POST** http://www.my-url-here.com/api/v1/sandbox?token=NQVmFHpsizHSnXDASeys&app_id=1
+**POST** /api/v1/add_to_sandbox/:app_id
+
+*Note: must pass 'token' as either request param or URL param.*
 
 **Example return data**
 A successful response will return a 201 status code a hash with the following:
@@ -97,7 +99,7 @@ A successful response will return a 201 status code a hash with the following:
 
 
 ### Remove App from a user's sandbox 
-**DELETE** http://www.my-url-here.com/api/v1/sandbox?token=NQVmFHpsizHSnXDASeys&app_id=1
+**DELETE** /api/v1/remove_from_sandbox/:app_id
 
 **Example return data**
 Although the item is successfully deleted, currently you will receive a 204 - No content status code returned.
