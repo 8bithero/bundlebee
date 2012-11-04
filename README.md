@@ -72,7 +72,8 @@ All sandbox methods are user specific and so all methods require an authenticati
 **GET** /api/v1/sandbox?token=token-value-goes-here
 
 **Example return data**
-A successful response will return an array of hashes containing the individual App's parameters.
+
+A **successful** response will return an array of hashes containing the individual App's parameters.
     
     [
         {
@@ -94,14 +95,14 @@ A successful response will return an array of hashes containing the individual A
 
 
 
-### Add App to a user's sandbox 
+### Add App to Sandbox 
 **POST** /api/v1/add_to_sandbox/:app_id
 
 *Note: You must pass 'token' as either a request parameter or as a URL parameter.*
 
 **Example return data**
 
-A **successful* response will return a **201** status code and a hash with the following:
+A **successful** response will return a **201** status code and a hash with the following:
     
     {
       "success": true,
@@ -109,16 +110,34 @@ A **successful* response will return a **201** status code and a hash with the f
     }
 
 
-An **unsuccessful* response will return one of the following responces:
-    
-    {
-      "success": true,
-      "message": "App-name-goes-here was successfully added to your Sandbox."
-    }
 
-### Remove App from a user's sandbox 
+### Remove App from Sandbox 
 **DELETE** /api/v1/remove_from_sandbox/:app_id
 
+*Note: You must pass 'token' as either a request parameter or as a URL parameter.*
+
 **Example return data**
-Although the item is successfully deleted, currently you will receive a 204 - No content status code returned.
-A correct response reply will be implemented in the next commit.
+
+A **successful** delete will return a **200** status code and a hash with the following:
+    
+    {
+      "success": true,
+      "message": "App was successfully removed from your Sandbox."
+    }
+
+
+
+
+
+## List of HTTP status response codes that will appear
+
+### Error codes that may appear
+* 401 - Unauthorized | Will appear when token is incorrect or user does not have access.
+* 404 - Record not found | Send when a record/resource cannot be found - may be sent as http or json.
+* 409 - Conflict | Will be sent when record already exists - i.e. trying to add item to sandbox that already exists.
+* 500 - Internal Server Error | The generic error that will be sent.
+
+
+### Success codes that may appear
+* 200 - Ok
+* 201 - Created | When you resource has successfully been added - i.e. added item to sandbox.
