@@ -7,10 +7,11 @@ Bundlebee::Application.routes.draw do
       devise_for :users, :path => '', :path_names => { :sign_in => "login" }
       resources  :apps
       resources  :users, only: :show
-      match 'sandbox'                     => 'sandbox_items#index',   :via => :get
-      match 'has_app/:app_id'             => 'sandbox_items#show',    :via => :get
-      match 'add_to_sandbox/:app_id'      => 'sandbox_items#create',  :via => :post
-      match 'remove_from_sandbox/:app_id' => 'sandbox_items#destroy', :via => :delete
+      match 'sandbox'                     => 'sandbox_items#index',       :via => :get
+      match 'has_app/:app_id'             => 'sandbox_items#show',        :via => :get
+      match 'add_to_sandbox/:app_id'      => 'sandbox_items#create',      :via => :post
+      match 'remove_from_sandbox/:app_id' => 'sandbox_items#destroy',     :via => :delete
+      match 'get_android_app_data'        => 'apps#get_android_app_data', :via => :get
     end
   end
 

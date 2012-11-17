@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/8bithero/google_play_search.git
+  revision: b2eba77939d52275ff3d1a65101199c28a3f7291
+  specs:
+    google_play_search (0.0.4)
+      nokogiri (>= 1.5.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -209,6 +216,7 @@ DEPENDENCIES
   devise
   dynamic_form
   factory_girl_rails
+  google_play_search!
   guard-rspec
   guard-spork
   jquery-rails
