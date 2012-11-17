@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121030215042) do
+ActiveRecord::Schema.define(:version => 20121117142644) do
 
   create_table "apps", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20121030215042) do
     t.integer  "developer_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.text     "description"
+    t.string   "icon_url"
   end
 
   create_table "sandbox_items", :force => true do |t|
