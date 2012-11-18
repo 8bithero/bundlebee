@@ -184,12 +184,13 @@ A **successful** delete will return a **200** status code and a hash with the fo
 * **icon_url** - (URL to App icon hosted on GooglePlay - pulled from GooglePlay)
 * **points** - (The point value (or tokens) that this app is worth - specified by developer - must be in range: 0 < x < 11.)
 
-> **POST** /api/v1/get_android_app_data?token=:auth_token  
-> Additional parameters that can be sent are listed above
+> **POST** /api/v1/add_app_to_db.json
+
+> Required params: token, name, bundle_id, points
 
 **Example Usage**
 
-    > **POST** http://bundlebee.herokuapp.com/api/v1/add_app_to_db
+    **POST** http://bundlebee.herokuapp.com/api/v1/add_app_to_db.json
 
     **Parameters passed:**
       * token: q7gAazqx738aDcGeVcbT
