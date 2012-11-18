@@ -184,7 +184,8 @@ A **successful** delete will return a **200** status code and a hash with the fo
 * **icon_url** - (URL to App icon hosted on GooglePlay - pulled from GooglePlay)
 * **points** - (The point value (or tokens) that this app is worth - specified by developer - must be in range: 0 < x < 11.)
 
-> **POST** /api/v1/get_android_app_data?token=:auth_token&
+> **POST** /api/v1/get_android_app_data?token=:auth_token
+> Additional parameters that can be sent are listed above
 
 **Example Usage**
 
