@@ -191,7 +191,7 @@ A **successful** delete will return a **200** status code and a hash with the fo
     > **POST** http://bundlebee.herokuapp.com/api/v1/add_app_to_db
 
     **Parameters passed:**
-      * token: cgzFESpR41wekWncF1yV
+      * token: q7gAazqx738aDcGeVcbT
       * bundle_id: com.blyts.greedyspiders2
       * name: Greedy Spiders 2
       * icon_url: https://lh3.ggpht.com/-y2tDmR1aKEYsOPtvkNMFhdg_m0032BcgSniu_ymDzoE9cHw_UD46XUgz-Tc1rD2kq4=w124
