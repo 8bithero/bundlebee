@@ -12,6 +12,7 @@ Bundlebee::Application.routes.draw do
       match 'add_to_sandbox/:app_id'      => 'sandbox_items#create',      :via => :post
       match 'remove_from_sandbox/:app_id' => 'sandbox_items#destroy',     :via => :delete
       match 'get_android_app_data'        => 'apps#get_android_app_data', :via => :get
+      match 'add_app_to_db'               => 'apps#create',               :via => :post
     end
   end
 

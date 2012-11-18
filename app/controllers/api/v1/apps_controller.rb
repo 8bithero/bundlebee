@@ -15,7 +15,12 @@ class Api::V1::AppsController < Api::V1::BaseController
   # POST api/v1/apps.json                                         AJAX
   #-------------------------------------------------------------------
   def create
-    app = App.create(params[:app])
+    app_params = params
+    app_params.reject!{ |k| k == 'token' }
+    app_params.reject!{ |k| k == 'action' }
+    app_params.reject!{ |k| k == 'controller' }
+
+    app = App.create(app_params)
     if app.valid?
       respond_with(app, :location => api_v1_app_path(app))
     else

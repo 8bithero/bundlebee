@@ -1,21 +1,12 @@
 Codename: BundleBee
 =========
 
-    **Please ignore the content of this block. It is currently not accurate.** 
-    BundleBee is build with a REST architecture, where resources follow the CRUD (Create Read Update Delete) paradim.
-    This means almost all resources have the following actions/methods available:
-    * **Index**: Shows all instances of a resource (url: /apps ) -> via: GET
-    * **Show**: Shows a single instance of a resource (url: /apps/:id ) -> via: GET
-    * **New/Create**: Creates a new instance of a resource (url: /apps/new ) -> via: POST
-    * **Update**: Edits a single instance of a resource (url: /apps/:id/edit ) -> via: UPDATE
-    * **Destroy**: Shows all instances of a resource (url: /apps ) -> via: DELETE
-
 ## Getting The Authentication token
 In order for users to begin verifying themselves with an authentication token they will first need to provide their login credentials (email & password).
 
 Login credentials will need to be sent as parameters to the backend server via:
 
-**POST** /api/v1/login
+> **POST** /api/v1/login
 
 *Note: You may pass 'email' and 'password' as either request parameters or as URL parameters.*
 
@@ -33,7 +24,7 @@ Upon successful authentication a JSON responce - similar to the example below - 
 
 
 ## Retreiving a list of all Apps
-**GET** /api/v1/apps
+> **GET** /api/v1/apps
 
 *Note: May need to append .json to request (i.e. /api/v1/apps.json)*
 
@@ -65,13 +56,14 @@ A **successful** response will return an array of hashes containing the individu
 
 
 
-
+- - -
+- - - 
 ## User's Sandbox
 The user's sandbox is the collection of Apps that the user has added to his account.
 All sandbox methods are user specific and so all methods require an authentication token to be sent as a parameter.
 
 ### Get a list of all Apps added to a user's sandbox 
-**GET** /api/v1/sandbox?token=token-value-goes-here
+> **GET** /api/v1/sandbox?token=token-value-goes-here
 
 *Note: May need to append .json to request (i.e. /api/v1/sandbox.json?token=token-value-goes-here)*
 
@@ -100,7 +92,7 @@ A **successful** response will return an array of hashes containing the individu
 
 
 ### Add App to Sandbox 
-**POST** /api/v1/add_to_sandbox/:app_id
+> **POST** /api/v1/add_to_sandbox/:app_id
 
 *Note: You may pass 'token' as either a request parameter or as a URL parameter.*
 
@@ -116,7 +108,7 @@ A **successful** response will return a **201** status code and a hash with the 
 
 
 ### Remove App from Sandbox 
-**DELETE** /api/v1/remove_from_sandbox/:app_id
+> **DELETE** /api/v1/remove_from_sandbox/:app_id
 
 *Note: You may pass 'token' as either a request parameter or as a URL parameter.*
 
@@ -136,7 +128,8 @@ A **successful** delete will return a **200** status code and a hash with the fo
 **Example return data**
 
 
-**App exist in sandbox** - response **200** status code and a hash with a:
+**App exist in sandbox** - response **200** status code and a hash with:
+
     {
       "bundle_id": "com.rovio.angry_birds",
       "created_at": "2012-11-03T21:21:20Z",
@@ -148,13 +141,67 @@ A **successful** delete will return a **200** status code and a hash with the fo
 
 
 **App DOES NOT exist in sandbox** - response **404** status code and a hash with the following:
+
     {
       "success": false,
       "message": "The App you were looking for could not be found in your Sandbox"
     }
 
+- - -
+- - - 
+## Developers: Adding new Apps to database
+
+> *Note: Currently only working for Google Play.*
+
+### The Process
+1. Developers send their bundle_id to BundleBee and the data is pulled from Google Play and sent back to BundleBee mobile app.
+2. Developers should be shown the the returned data to ensure it is correct.
+3. In order to Add their app to our database a CREATE request will need to be sent back.
+  
+#### 1 & 2) Retrieving data from Google Play
+> **GET** /api/v1/get_android_app_data?bundle_id=:bundle_id
+
+**Example Usage**
+
+    http://bundlbee.herokuapp.com/api/v1/get_android_app_data?bundle_id=com.blyts.greedyspiders2
+
+    **Returns**
+    {
+      "name": "Greedy Spiders 2",
+      "developer": "Blyts",
+      "icon_url": "https://lh3.ggpht.com/-y2tDmR1aKEYsOPtvkNMFhdg_m0032BcgSniu_ymDzoE9cHw_UD46XUgz-Tc1rD2kq4=w124",
+      "description": "Spiders are back!! More evil, creepy and greedy than ever...",
+      "rating": 4
+    }
+
+*Note: The rating returned currently uses float - return values are rounded up/down. Will be changed in next release.*
+
+#### 3) Adding app to BundleBee Database
+**Available Parameters**
+* **bundle_id** - (ID of App as it appears on GooglePlay - Entered by Developer)
+* **name** - (Name of Application - i.e. 'Greedy Spiders 2' - pulled from GooglePlay)
+* **description** - (Description of app - pulled from GooglePlay)
+* **icon_url** - (URL to App icon hosted on GooglePlay - pulled from GooglePlay)
+* **points** - (The point value (or tokens) that this app is worth - specified by developer - must be in range: 0 < x < 11.)
+
+> **POST** /api/v1/get_android_app_data?token=:auth_token&
+
+**Example Usage**
+
+    > **POST** http://bundlebee.herokuapp.com/api/v1/add_app_to_db
+
+    **Parameters passed:**
+      * token: cgzFESpR41wekWncF1yV
+      * bundle_id: com.blyts.greedyspiders2
+      * name: Greedy Spiders 2
+      * icon_url: https://lh3.ggpht.com/-y2tDmR1aKEYsOPtvkNMFhdg_m0032BcgSniu_ymDzoE9cHw_UD46XUgz-Tc1rD2kq4=w124
+      * description: Spiders are back!! More evil, creepy and greedy than ever.
+      * rating: 4
+      * points: 2
 
 
+- - -
+- - - 
 ## List of HTTP status response codes that will appear
 
 ### Error codes that may appear

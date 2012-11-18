@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/8bithero/google_play_search.git
-  revision: b2eba77939d52275ff3d1a65101199c28a3f7291
+  revision: ccf18f484c38e7f0a59939cc7bd2e697d6e01527
   specs:
     google_play_search (0.0.4)
       nokogiri (>= 1.5.3)

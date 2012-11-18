@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(:version => 20121117142644) do
     t.datetime "updated_at",   :null => false
     t.text     "description"
     t.string   "icon_url"
+    t.integer  "points"
+    t.integer  "rating"
   end
 
   create_table "sandbox_items", :force => true do |t|
