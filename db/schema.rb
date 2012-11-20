@@ -32,10 +32,6 @@ ActiveRecord::Schema.define(:version => 20121117142644) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "sandbox_items", ["app_id"], :name => "index_sandbox_items_on_app_id"
-  add_index "sandbox_items", ["user_id", "app_id"], :name => "index_sandbox_items_on_user_id_and_app_id", :unique => true
-  add_index "sandbox_items", ["user_id"], :name => "index_sandbox_items_on_user_id"
-
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false

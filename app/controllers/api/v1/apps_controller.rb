@@ -2,13 +2,20 @@ class Api::V1::AppsController < Api::V1::BaseController
 
   # FILTERS
   #-------------------------------------------------------------------
-  skip_before_filter :authenticate_user, :only => [:index, :get_android_app_data]
+  skip_before_filter :authenticate_user, :only => [:index, :show, :get_android_app_data]
 
 
   # GET api/v1/apps.json                                          AJAX
   #-------------------------------------------------------------------
   def index
     respond_with(App.all)
+  end
+
+  # GET api/v1/apps/:id.json                                      AJAX
+  #-------------------------------------------------------------------
+  def show
+    app = App.find(params[:id])
+    respond_with(app)
   end
 
 

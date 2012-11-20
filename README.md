@@ -23,7 +23,7 @@ Upon successful authentication a JSON responce - similar to the example below - 
 
 
 
-## Retreiving a list of all Apps
+## Retreiving a list of all Apps from BunbleBee repository
 > **GET** /api/v1/apps
 
 *Note: May need to append .json to request (i.e. /api/v1/apps.json)*
@@ -37,23 +37,57 @@ A **successful** response will return an array of hashes containing the individu
 
     [
       {
-        "bundle_id": "com.rovio.angry_birds",
-        "created_at": "2012-10-26T09:10:19Z",
+        "bundle_id": "com.rovio.angrybirds",
+        "created_at": "2012-11-03T21:21:20Z",
+        "description": "Use the unique powers of the Angry Birds to destroy the greedy pigs' fortresses!",
         "developer_id": null,
+        "icon_url": "https://lh3.ggpht.com/pq8OCpcD1AP5QhN7kZT_5zeTTmGCdG9zFDXVXPuybVDsbhhaq7uxbTDZduSMxqusn14=w124",
         "id": 1,
         "name": "Angry Birds",
-        "updated_at": "2012-10-26T09:10:19Z"
+        "points": 2,
+        "rating": 4,
+        "updated_at": "2012-11-20T09:50:52Z"
       },
       {
-        "bundle_id": "com.mobelux.instapaper",
-        "created_at": "2012-10-26T09:14:50Z",
+        "bundle_id": "com.zeptolab.ctr.paid",
+        "created_at": "2012-11-03T21:21:20Z",
+        "description": "Cut the Rope, catch a star, and feed Om Nom candy in this award-winning game!",
         "developer_id": null,
+        "icon_url": "https://lh3.ggpht.com/I5NYwBKCBphMQvQLC7DWgTbMabYxqrwR83wEe2o4IryOJBfcndjz4ZN4cc2rMNPlCA=w124",
         "id": 2,
-        "name": "Instapaper",
-        "updated_at": "2012-10-26T09:14:50Z"
-      }
+        "name": "Cut The Rope",
+        "points": 2,
+        "rating": 4,
+        "updated_at": "2012-11-20T10:26:37Z"
+    }
     ]
 
+- - -
+## Retreiving details of a SINGLE App from the BunbleBee repository
+> **GET** /api/v1/apps/:id
+
+*Note: May need to append .json to request (i.e. /api/v1/apps/:id.json)*
+
+This will give you a complete list off all Apps available on the system.
+No authentication token is required. This list can be viewed by anyone, including non-logged in users.
+
+**Example request data**
+> **GET** https://bundlebee.herokuapp.com/api/v1/apps/1.json
+
+**Example return data**
+      
+      {
+        "bundle_id": "com.rovio.angrybirds",
+        "created_at": "2012-11-03T21:21:20Z",
+        "description": "Use the unique powers of the Angry Birds to destroy the greedy pigs' fortresses!",
+        "developer_id": null,
+        "icon_url": "https://lh3.ggpht.com/pq8OCpcD1AP5QhN7kZT_5zeTTmGCdG9zFDXVXPuybVDsbhhaq7uxbTDZduSMxqusn14=w124",
+        "id": 1,
+        "name": "Angry Birds",
+        "points": 2,
+        "rating": 4,
+        "updated_at": "2012-11-20T09:50:52Z"
+      }
 
 
 - - -
@@ -123,7 +157,7 @@ A **successful** delete will return a **200** status code and a hash with the fo
 
 
 ### Check app exists in Sandbox 
-**GET** /api/v1/has_app/:app_id?token=token-value-goes-here
+> **GET** /api/v1/has_app/:app_id?token=token-value-goes-here
 
 **Example return data**
 
