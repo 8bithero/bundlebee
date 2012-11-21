@@ -1,5 +1,30 @@
 Codename: BundleBee
 =========
+## User Registration
+
+> **POST** /api/v1/users.json
+
+**Required parameters:**
+* email
+* password
+* password_confirmation
+
+A **successful** response will return the following message with status code **200**:
+
+    {
+      "success": true,
+      "message": "User account for foo@bar.com has been successfully created."
+    }
+
+
+An **unsuccessful** response will return the following message with status code **500**:
+
+    {
+      "success": false,
+      "message": "A user account for foo@bar.com could not be created."
+    }
+
+- - -
 
 ## Getting The Authentication token
 In order for users to begin verifying themselves with an authentication token they will first need to provide their login credentials (email & password).
@@ -165,13 +190,17 @@ A **successful** delete will return a **200** status code and a hash with the fo
 **App exist in sandbox** - response **200** status code and a hash with:
 
     {
-      "bundle_id": "com.rovio.angry_birds",
+      "bundle_id": "com.rovio.angrybirds",
       "created_at": "2012-11-03T21:21:20Z",
+      "description": "Use the unique powers of the Angry Birds to destroy the greedy pigs' fortresses!",
       "developer_id": null,
+      "icon_url": "https://lh3.ggpht.com/pq8OCpcD1AP5QhN7kZT_5zeTTmGCdG9zFDXVXPuybVDsbhhaq7uxbTDZduSMxqusn14=w124",
       "id": 1,
       "name": "Angry Birds",
-      "updated_at": "2012-11-03T21:21:20Z"
-    }
+      "points": 2,
+      "rating": 4,
+      "updated_at": "2012-11-20T09:50:52Z"
+      }
 
 
 **App DOES NOT exist in sandbox** - response **404** status code and a hash with the following:

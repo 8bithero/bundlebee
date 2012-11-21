@@ -6,7 +6,7 @@ Bundlebee::Application.routes.draw do
     namespace :v1 do
       devise_for :users, :path => '', :path_names => { :sign_in => "login" }
       resources  :apps
-      resources  :users, only: :show
+      resources  :users, :only => [:show, :create]
       match 'sandbox'                     => 'sandbox_items#index',       :via => :get
       match 'has_app/:app_id'             => 'sandbox_items#show',        :via => :get
       match 'add_to_sandbox/:app_id'      => 'sandbox_items#create',      :via => :post
